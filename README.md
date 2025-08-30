@@ -1,38 +1,92 @@
-# RTS Documents Data
+# RTS Mitra 🏛️🤝  
+*A Citizen-Friendly AI Assistant for Government Services*  
 
-This repository contains the Pune Municipal Corporation's Right to Service (RTS) document requirements for various services.
+## 📌 Overview  
+**RTS Mitra** is an AI-powered virtual assistant designed to help Indian citizens easily access information about **government departments, services, and required documents**.  
+It works in **English** and **Marathi**, providing simple and clear answers in a citizen-friendly tone.  
 
-## Data Structure
+**n8n** is an open-source workflow automation tool that connects apps, APIs, and services, enabling seamless automation of tasks without coding, enhancing efficiency and productivity.
 
-The JSON file contains information about documents required for different municipal services organized by:
+## ✨ Features  
+- ✅ Provides details about **departments** and their services  
+- ✅ Lists **required documents** for each service  
+- ✅ Supports **English & Marathi** questions  
+- ✅ Uses a structured **FAQ dataset** for accurate answers  
+- ✅ Polite fallback response when the answer is not available  
+- ✅ Automated with **n8n workflows** for seamless citizen query handling  
+- ✅ Powered by **Gemini 2.0 Flash model** for fast, contextual, and multilingual responses  
 
-- **Department Name**: The municipal department (Drainage, Fire Brigade, Health, etc.)
-- **Service Name**: Specific service offered by the department
-- **Documents**: Array of required documents for each service
+## 🛠️ Tech Stack  
+- **Language Model:** Gemini 2.0 Flash (for natural conversation & semantic understanding)  
+- **Workflow Automation:** n8n (to automate FAQ retrieval, query handling, and response delivery)  
+- **FAQ Dataset (CSV)** – pre-generated with 100+ citizen-friendly Q&A  
+- **Fuzzy Semantic Matching** – ensures answers even if citizens make typos  
+- **Bilingual Support** – English & Marathi  
 
-## Departments Available
+## 📂 Data Used  
+The assistant uses a curated **FAQ dataset**   
+This dataset includes:  
+- Department-level questions  
+- Service-level questions  
+- Document requirement questions  
+- General overview questions  
 
-1. **Drainage** - Sewage Connection services
-2. **ENCROACHMENT** - Various encroachment permits
-3. **Fire Brigade** - Fire safety NOCs and licenses
-4. **Health** - Health-related licenses and registrations
-5. **PTAX** - Property tax services
-6. **Skysign** - Advertising and signage licenses
-7. **Tree** - Tree cutting and maintenance
-8. **Water** - Water connection services
 
-## Usage
+## ⚙️ n8n Automation  
+We used **n8n**, an open-source workflow automation tool, to:  
+1. Accept citizen queries via chatbot/web form  
+2. Process the query and match it against the **FAQ dataset**  
+3. Call the **Gemini 2.0 Flash model** for semantic understanding (handles typos, synonyms, intent recognition)  
+4. Return the response in **English** or **Marathi**, depending on the user’s language  
+5. Log the interaction for future improvements  
 
-This data can be accessed via HTTP requests for automation workflows (n8n, etc.).
+This automation ensures:  
+- Faster query resolution  
+- Reduced manual intervention  
+- A smooth citizen experience  
 
-### Raw JSON URL
-Once uploaded, the JSON file will be available at:
-`https://raw.githubusercontent.com/Shuboy742/rts-documents-data/main/RTS_Service_Wise_Doc_List.json`
+## 🤖 Gemini 2.0 Flash Model  
+We integrated **Gemini 2.0 Flash**, which provides:  
+- ⚡ Lightning-fast responses for real-time citizen queries  
+- 🧠 Deep semantic understanding of Indian government service-related terms  
+- 🌐 Multilingual support (English + Marathi, extendable to Hindi and others)  
+- 🔎 Context-aware answers even with spelling mistakes or incomplete queries  
 
-## Example Query
-"What documents are required for sewage connection?"
+## 🚀 Example Usage  
 
-**Answer**: 7 documents including maps, certificates, and permits.
+**English Example**  
+- **Question:** "Which documents are needed for a caste certificate?"  
+- **Answer:** "For the service 'Caste Certificate', the required documents are: Aadhaar Card, Residence Proof, and Birth Certificate."  
 
-## Data Source
-Official Pune Municipal Corporation RTS (Right to Service) document list. 
+**Marathi Example**  
+- **प्रश्न:** "H-13 कुत्रा/मांजर परवाना नूतनीकरणासाठी कोणती कागदपत्रं लागतात?"  
+- **उत्तर:** "‘H-13 कुत्रा/मांजर परवाना नूतनीकरण’ या सेवेसाठी लागणारी कागदपत्रे: आधार कार्ड, रहिवासी पुरावा, आणि परवाना नूतनीकरण अर्ज."  
+
+## 📖 System Instructions  
+RTS Mitra follows these rules:  
+1. Always give **clear, concise, and citizen-friendly answers**.  
+2. Respond in **Marathi** if the question is asked in Marathi.  
+3. Never create new departments or services not in the FAQ data.  
+4. If the answer is missing, politely say:  
+   *"I don’t have the exact information about that. Could you please rephrase your question or ask about departments, services, or required documents?"*  
+
+## 🤝 Contribution  
+- Extend the FAQ dataset with more questions & answers.  
+- Add support for **Hindi** and other regional languages.  
+- Improve fuzzy matching for better accuracy.  
+- Extend n8n workflows for advanced citizen services (SMS, WhatsApp, IVR).  
+
+## 📜 License  
+This project is for ** citizen support purposes**.  
+
+##  Overview
+<img width="1920" height="1020" alt="n1" src="https://github.com/user-attachments/assets/ae59e29d-cc29-4df5-a1ff-6eee0ace3f5b" />
+<img width="1920" height="1080" alt="n2" src="https://github.com/user-attachments/assets/d2779314-5566-4bed-9a9a-77443750aeb3" />
+<img width="1920" height="1080" alt="n3" src="https://github.com/user-attachments/assets/51398d05-c6bf-47eb-9e40-ef9f812fe844" />
+<img width="1920" height="1080" alt="n4" src="https://github.com/user-attachments/assets/26739e96-9198-49af-b9b8-a015e8243a2b" />
+<img width="1920" height="1080" alt="n5" src="https://github.com/user-attachments/assets/dbfe4482-8bcd-4a99-8903-d0966179e9b4" />
+
+
+
+
+  
