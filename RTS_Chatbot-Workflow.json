@@ -1,0 +1,211 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -992,
+        368
+      ],
+      "id": "82847108-4e72-4cda-9854-22a1a587cf42",
+      "name": "When chat message received",
+      "webhookId": "d5f89fc6-74b9-4345-a31a-23ebf0a7aa78"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are RTS Mitra, a helpful assistant for Indian citizens.  \nYour role is to answer questions about government departments, services, and required documents based on the provided FAQ data.  \n\nGuidelines:  \n1. Always provide clear, concise, and citizen-friendly answers.  \n2. If a question is about departments, list the departments or explain which department handles a service.  \n3. If a question is about services, explain what services are available and which documents are required.  \n4. If a question is about documents, list the exact required documents from the data.  \n5. If you don’t find an exact answer in the FAQ, respond politely with:  \n   \"I don’t have the exact information about that. Could you please rephrase your question or ask about departments, services, or required documents?\"  \n6. Keep the tone formal but simple, ensuring accessibility for all citizens.  \n7. Never make up new departments or services—only use the data provided in the FAQ file.  \n8. When listing items (departments, services, or documents), use a clear comma-separated format or a numbered list for readability.  \n9. If the user asks in **Marathi**, reply in **Marathi**. Keep the same style: clear, simple, and citizen-friendly.  \n   Example:  \n   - प्रश्न: \"जात प्रमाणपत्रासाठी कोणते कागदपत्र लागतात?\"  \n   - उत्तर: \"‘जात प्रमाणपत्र’ या सेवेसाठी लागणारी कागदपत्रे: आधार कार्ड, रहिवासी पुरावा, आणि जन्म प्रमाणपत्र.\"  \n\nExample Style (English):  \n- Question: \"Which documents are needed for a caste certificate?\"  \n- Answer: \"For the service 'Caste Certificate', the required documents are: Aadhaar Card, Residence Proof, and Birth Certificate.\"  \n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        -608,
+        368
+      ],
+      "id": "87a8251b-177c-4eea-88e6-0b0f7f55450d",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -976,
+        624
+      ],
+      "id": "678f349b-22dd-4725-bba1-56cded290410",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "J34YjdXRf4iDE6Cg",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 15
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -800,
+        624
+      ],
+      "id": "5e65426e-d14d-448e-8c59-6d0402b6446a",
+      "name": "Simple Memory1"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/11tfToBxjW6VkmZIqILLucixK1m0I-oYh0sB8DeBzc-U/edit?gid=1291725338#gid=1291725338",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1291725338,
+          "mode": "list",
+          "cachedResultName": "Sheet1.csv",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/11tfToBxjW6VkmZIqILLucixK1m0I-oYh0sB8DeBzc-U/edit#gid=1291725338"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        -592,
+        624
+      ],
+      "id": "912d773d-1fb6-4821-923c-adb41585cf3b",
+      "name": "Get RTS Data",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "GHr9JPtFNvAy0qhx",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "11tfToBxjW6VkmZIqILLucixK1m0I-oYh0sB8DeBzc-U",
+          "mode": "list",
+          "cachedResultName": "RTS_Service_Wise_Doc_List",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/11tfToBxjW6VkmZIqILLucixK1m0I-oYh0sB8DeBzc-U/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1100504196,
+          "mode": "list",
+          "cachedResultName": "FAQ.csv",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/11tfToBxjW6VkmZIqILLucixK1m0I-oYh0sB8DeBzc-U/edit#gid=1100504196"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        -336,
+        624
+      ],
+      "id": "bec7e310-4090-44c2-a48c-22bc148c017a",
+      "name": "FAQ",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "GHr9JPtFNvAy0qhx",
+          "name": "Google Sheets account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        []
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get RTS Data": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "FAQ": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "09c04818-b88c-4605-98ac-f09f7e0b99c5",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "8ae953713c63f495aeb0c0ce88c27513cafdb040e6339d2734f086347ea81adf"
+  },
+  "id": "jdlobKqnfqUeo0hQ",
+  "tags": [
+    {
+      "createdAt": "2025-08-30T16:32:03.057Z",
+      "updatedAt": "2025-08-30T16:32:03.057Z",
+      "id": "6jFCcWPKmooDiFr2",
+      "name": "RTS Documents"
+    }
+  ]
+}
